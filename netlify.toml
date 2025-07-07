@@ -8,13 +8,4 @@
 [build.environment]
   NODE_ENV = "production"
   NEXT_TELEMETRY_DISABLED = "1"
-
-# Enable Next.js server-side rendering
-[context.production]
-  command = "npm run build:netlify"
-
-[context.deploy-preview]
-  command = "npm run build:netlify"
-
-[context.branch-deploy]
-  command = "npm run build:netlify"
+  NODE_VERSION = "18"

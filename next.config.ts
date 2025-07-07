@@ -12,11 +12,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    esmExternals: true,
-  },
-  // Enable server-side rendering for API routes
-  serverExternalPackages: ['@netlify/functions'],
+  // Simplified configuration for Netlify
+  output: 'standalone',
+  trailingSlash: false,
 };
 
 export default nextConfig;
