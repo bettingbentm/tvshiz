@@ -6,6 +6,7 @@ import { DetailModal } from './DetailModal';
 import { StreamingNavigation, streamingServices } from './StreamingNavigation';
 import { GenreTabs } from './GenreTabs';
 import { ComingThisWeek } from './ComingThisWeek';
+import { useScrollDirection } from '../hooks/useScrollDirection';
 
 interface StreamingItem {
   id: string;
@@ -30,6 +31,9 @@ export default function StreamingDashboard() {
   const [currentLimit, setCurrentLimit] = useState(40);
   const [activeGenre, setActiveGenre] = useState('0');
   const [lastRefreshTime, setLastRefreshTime] = useState(Date.now());
+  
+  // Add scroll direction hook
+  const { isHidden } = useScrollDirection();
 
   // Memoized fetch function to prevent unnecessary re-renders
   const fetchData = useCallback(async (isAutoRefresh = false) => {
@@ -155,7 +159,9 @@ export default function StreamingDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black bg-pattern text-white custom-scrollbar">
       {/* Header */}
-      <header className="glass-morphism p-3 md:p-4 shadow-2xl sticky top-0 z-10">
+      <header className={`glass-morphism p-3 md:p-4 shadow-2xl sticky top-0 z-10 transition-transform duration-300 ease-in-out ${
+        isHidden ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
+      }`}>
         <div className="max-w-7xl mx-auto">
           {/* Top row with logo and search */}
           <div className="flex items-center justify-between mb-3 md:mb-0">

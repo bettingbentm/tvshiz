@@ -396,3 +396,24 @@ kbd {
   background-size: 200px 100%;
   animation: shimmer 2s infinite linear;
 }
+
+/* Mobile Header Hide/Show Animation */
+@media (max-width: 768px) {
+  .header-slide {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .header-slide.hidden {
+    transform: translateY(-100%);
+  }
+  
+  /* Ensure smooth scrolling performance */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  /* Add safe area padding for mobile devices with notches */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
