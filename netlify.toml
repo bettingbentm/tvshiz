@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build:netlify"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_ENV = "production"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Enable Next.js server-side rendering
+[context.production]
+  command = "npm run build:netlify"
+
+[context.deploy-preview]
+  command = "npm run build:netlify"
+
+[context.branch-deploy]
+  command = "npm run build:netlify"
