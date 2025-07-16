@@ -157,20 +157,20 @@ export default function StreamingDashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black bg-pattern text-white custom-scrollbar">
-      {/* Header */}
-      <header className={`glass-morphism p-3 md:p-4 shadow-2xl sticky top-0 z-10 transition-transform duration-300 ease-in-out ${
+    <div className="min-h-screen bg-pattern text-white custom-scrollbar">
+      {/* Netflix-style Header */}
+      <header className={`netflix-header p-3 md:p-4 shadow-2xl sticky top-0 z-10 transition-transform duration-300 ease-in-out ${
         isHidden ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
       }`}>
         <div className="max-w-7xl mx-auto">
           {/* Top row with logo and search */}
           <div className="flex items-center justify-between mb-3 md:mb-0">
             <div className="flex items-center space-x-4">
-              <h1 className="text-2xl md:text-3xl font-bold gradient-text neon-glow animate-float">
+              <h1 className="text-2xl md:text-3xl font-bold netflix-gradient-text">
                 TVSHIZ
               </h1>
-              <div className="hidden md:block text-xs text-gray-300 glass-morphism px-2 py-1 rounded-full">
-                <span className="text-green-400">●</span> Last updated: {new Date(lastRefreshTime).toLocaleTimeString()}
+              <div className="hidden md:block text-xs text-gray-300 bg-black bg-opacity-30 px-3 py-1 rounded-full">
+                <span className="netflix-red-accent">●</span> Last updated: {new Date(lastRefreshTime).toLocaleTimeString()}
               </div>
             </div>
             <div className="md:hidden">
@@ -189,7 +189,7 @@ export default function StreamingDashboard() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-end space-y-2 md:space-y-0 md:space-x-4">
             <button
               onClick={() => fetchData()}
-              className="hidden md:flex items-center space-x-2 px-4 py-2 btn-primary rounded-lg text-white text-sm font-medium"
+              className="hidden md:flex items-center space-x-2 netflix-button text-sm font-medium"
               title="Refresh content"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -203,7 +203,7 @@ export default function StreamingDashboard() {
                 placeholder="Search shows and movies..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full md:w-80 px-4 py-2 glass-morphism rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 text-sm transition-all duration-200"
+                className="w-full md:w-80 px-4 py-2 bg-black bg-opacity-50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm transition-all duration-200"
               />
               <svg className="absolute right-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -212,7 +212,7 @@ export default function StreamingDashboard() {
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value as 'all' | 'movie' | 'series')}
-              className="w-full md:w-auto px-4 py-2 glass-morphism rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-500 text-sm transition-all duration-200"
+              className="w-full md:w-auto px-4 py-2 bg-black bg-opacity-50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm transition-all duration-200"
             >
               <option value="all">All Types</option>
               <option value="movie">Movies</option>
@@ -251,7 +251,7 @@ export default function StreamingDashboard() {
               {filteredItems.map((item, index) => (
                 <div
                   key={item.id}
-                  className="card-hover-effect glass-morphism rounded-xl overflow-hidden shadow-2xl cursor-pointer animate-fadeInUp"
+                  className="netflix-card cursor-pointer"
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => setSelectedItem(item)}
                 >
@@ -264,7 +264,7 @@ export default function StreamingDashboard() {
                           className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                       </>
                     ) : (
                       <div className="flex flex-col items-center justify-center h-full animate-shimmer">
@@ -275,7 +275,7 @@ export default function StreamingDashboard() {
                       </div>
                     )}
                     <div className="absolute top-2 right-2">
-                      <span className="text-xs bg-red-500 text-white px-2 py-1 rounded-full font-bold shadow-lg">
+                      <span className="text-xs netflix-red-bg text-white px-2 py-1 rounded-full font-bold shadow-lg">
                         {item.type.toUpperCase()}
                       </span>
                     </div>
@@ -318,7 +318,7 @@ export default function StreamingDashboard() {
                 <button
                   onClick={loadMore}
                   disabled={loading}
-                  className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 md:px-12 py-3 md:py-4 rounded-xl font-bold text-sm md:text-base shadow-2xl transition-all duration-300 w-full md:w-auto"
+                  className="netflix-button disabled:opacity-50 disabled:cursor-not-allowed px-8 md:px-12 py-3 md:py-4 rounded-xl font-bold text-sm md:text-base shadow-2xl transition-all duration-300 w-full md:w-auto"
                 >
                   {loading ? (
                     <div className="flex items-center justify-center space-x-2">

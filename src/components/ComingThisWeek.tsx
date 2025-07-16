@@ -541,7 +541,7 @@ export function ComingThisWeek() {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
-            <h3 className="text-lg font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h3 className="text-lg font-bold netflix-gradient-text">
               {title}
             </h3>
             <div className="h-px bg-gradient-to-r from-red-500/50 to-transparent flex-1 ml-2"></div>
@@ -552,7 +552,7 @@ export function ComingThisWeek() {
               disabled={!canScrollLeft}
               className={`group relative p-2 rounded-full transition-all duration-300 ${
                 canScrollLeft
-                  ? 'bg-gradient-to-r from-red-500/20 to-red-600/20 hover:from-red-500/30 hover:to-red-600/30 text-white shadow-lg hover:shadow-red-500/25'
+                  ? 'netflix-red-bg hover:bg-red-700 text-white shadow-lg hover:shadow-red-500/25'
                   : 'bg-white/5 text-gray-500 cursor-not-allowed'
               }`}
             >
@@ -565,7 +565,7 @@ export function ComingThisWeek() {
               disabled={!canScrollRight}
               className={`group relative p-2 rounded-full transition-all duration-300 ${
                 canScrollRight
-                  ? 'bg-gradient-to-r from-red-500/20 to-red-600/20 hover:from-red-500/30 hover:to-red-600/30 text-white shadow-lg hover:shadow-red-500/25'
+                  ? 'netflix-red-bg hover:bg-red-700 text-white shadow-lg hover:shadow-red-500/25'
                   : 'bg-white/5 text-gray-500 cursor-not-allowed'
               }`}
             >
@@ -681,7 +681,7 @@ export function ComingThisWeek() {
     <div className="mb-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-2">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h2 className="text-xl font-bold netflix-gradient-text">
             Coming Soon
           </h2>
           <div className="h-px bg-gradient-to-r from-red-500/50 to-transparent flex-1 ml-2"></div>

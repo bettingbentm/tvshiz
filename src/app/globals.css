@@ -1,37 +1,126 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #141414;
+  --foreground: #ffffff;
+  --netflix-red: #E50914;
+  --netflix-red-dark: #B81D24;
+  --netflix-red-light: #F5F5F1;
+  --netflix-black: #000000;
+  --netflix-dark-gray: #141414;
+  --netflix-medium-gray: #2F2F2F;
+  --netflix-light-gray: #564D4D;
+  --netflix-white: #FFFFFF;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #141414;
+    --foreground: #ffffff;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--netflix-dark-gray);
+  color: var(--netflix-white);
+  font-family: 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Background pattern */
+/* Netflix-inspired background */
 .bg-pattern {
-  background-image: 
-    radial-gradient(circle at 25% 25%, rgba(239, 68, 68, 0.1) 0%, transparent 25%),
-    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 25%);
-  background-size: 100px 100px;
-  background-position: 0 0, 50px 50px;
+  background: linear-gradient(180deg, #141414 0%, #000000 100%);
+  background-attachment: fixed;
+}
+
+/* Netflix-style components */
+.netflix-card {
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.netflix-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Netflix-style Card Animations */
+@keyframes netflix-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.netflix-card {
+  animation: netflix-fade-in 0.6s ease-out forwards;
+}
+
+.netflix-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.netflix-card:hover::before {
+  opacity: 1;
+}
+
+.netflix-red-accent {
+  color: var(--netflix-red);
+}
+
+.netflix-red-bg {
+  background-color: var(--netflix-red);
+}
+
+.netflix-red-bg:hover {
+  background-color: var(--netflix-red-dark);
+}
+
+.netflix-header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.netflix-button {
+  background: var(--netflix-red);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.netflix-button:hover {
+  background: var(--netflix-red-dark);
+  transform: translateY(-2px);
+}
+
+.netflix-gradient-text {
+  background: linear-gradient(45deg, var(--netflix-red), var(--netflix-red-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Mobile optimizations */
@@ -332,69 +421,44 @@ html {
   background: rgba(239, 68, 68, 0.8);
 }
 
-/* Enhanced scrolling for Coming This Week */
-.horizontal-scroll-smooth {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Netflix-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-.horizontal-scroll-smooth::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
 }
 
-/* Arrow button animations */
-.arrow-button {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+::-webkit-scrollbar-thumb {
+  background: var(--netflix-red);
+  border-radius: 10px;
 }
 
-.arrow-button:hover {
-  backdrop-filter: blur(20px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--netflix-red-dark);
 }
 
-.arrow-button:active {
-  transform: scale(0.95);
-}
-
-/* Pause animation class */
-.animation-paused {
-  animation-play-state: paused !important;
-}
-
-/* Keyboard hint styling */
-kbd {
-  font-family: inherit;
-  font-size: 0.75rem;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Shimmer animation for progress bars */
-@keyframes shimmer {
+/* Netflix-style shimmer effect */
+@keyframes netflix-shimmer {
   0% {
-    background-position: -200px 0;
+    background-position: -468px 0;
   }
   100% {
-    background-position: 200px 0;
+    background-position: 468px 0;
   }
 }
 
-.shimmer {
+.netflix-shimmer {
   background: linear-gradient(
     90deg,
-    #ef4444 0%,
-    #f87171 25%,
-    #dc2626 50%,
-    #ef4444 75%,
-    #dc2626 100%
+    #141414 0%,
+    #2F2F2F 50%,
+    #141414 100%
   );
-  background-size: 200px 100%;
-  animation: shimmer 2s infinite linear;
+  background-size: 1000px 100%;
+  animation: netflix-shimmer 2s infinite linear;
 }
 
 /* Mobile Header Hide/Show Animation */
