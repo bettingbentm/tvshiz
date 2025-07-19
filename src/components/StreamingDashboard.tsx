@@ -159,17 +159,17 @@ export default function StreamingDashboard() {
   return (
     <div className="min-h-screen bg-pattern text-white custom-scrollbar">
       {/* Netflix-style Header */}
-      <header className={`netflix-header p-3 md:p-4 shadow-2xl sticky top-0 z-10 transition-transform duration-300 ease-in-out ${
+      <header className={`netflix-header p-6 md:p-8 lg:p-10 shadow-2xl sticky top-0 z-10 transition-transform duration-300 ease-in-out ${
         isHidden ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
       }`}>
         <div className="max-w-7xl mx-auto">
           {/* Top row with logo and search */}
-          <div className="flex items-center justify-between mb-3 md:mb-0">
+          <div className="flex items-center justify-between mb-6 md:mb-8">
             <div className="logo-container space-x-4 flex-1 md:flex-initial">
               <img 
                 src="/logo.png" 
                 alt="StreamLTV Logo" 
-                className="streamltv-logo h-8 md:h-12 w-auto object-contain"
+                className="streamltv-logo h-16 md:h-24 lg:h-32 xl:h-36 w-auto object-contain"
               />
               <div className="hidden md:block text-xs text-gray-300 bg-black bg-opacity-30 px-3 py-1 rounded-full">
                 <span className="netflix-red-accent">●</span> Last updated: {new Date(lastRefreshTime).toLocaleTimeString()}
