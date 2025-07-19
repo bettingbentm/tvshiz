@@ -481,3 +481,26 @@ html {
     padding-top: env(safe-area-inset-top);
   }
 }
+
+/* Logo styling for better appearance */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .logo-container {
+    justify-content: flex-start;
+  }
+}
+
+.streamltv-logo {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  transition: all 0.3s ease;
+}
+
+.streamltv-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(229, 9, 20, 0.3));
+}

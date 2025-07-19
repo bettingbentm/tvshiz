@@ -165,10 +165,12 @@ export default function StreamingDashboard() {
         <div className="max-w-7xl mx-auto">
           {/* Top row with logo and search */}
           <div className="flex items-center justify-between mb-3 md:mb-0">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-2xl md:text-3xl font-bold netflix-gradient-text">
-                TVSHIZ
-              </h1>
+            <div className="logo-container space-x-4 flex-1 md:flex-initial">
+              <img 
+                src="/logo.png" 
+                alt="StreamLTV Logo" 
+                className="streamltv-logo h-8 md:h-12 w-auto object-contain"
+              />
               <div className="hidden md:block text-xs text-gray-300 bg-black bg-opacity-30 px-3 py-1 rounded-full">
                 <span className="netflix-red-accent">●</span> Last updated: {new Date(lastRefreshTime).toLocaleTimeString()}
               </div>
