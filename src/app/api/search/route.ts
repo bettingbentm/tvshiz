@@ -24,6 +24,32 @@ export async function GET(request: NextRequest) {
     const genre = searchParams.get('genre') || '0'; // genre ID
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '40'); // Increased default limit
+    const id = searchParams.get('id'); // For fetching specific TV show details
+    const season = searchParams.get('season'); // For fetching specific season episodes
+    const includeEpisodes = searchParams.get('include_episodes') === 'true';
+
+    // Handle TV show details and episodes requests
+    if (id && type === 'tv') {
+      if (season) {
+        // Fetch episodes for a specific season
+        const seasonUrl = `${TMDB_BASE_URL}/tv/${id}/season/${season}?api_key=${TMDB_API_KEY}`;
+        const seasonResponse = await fetch(seasonUrl);
+        const seasonData = await seasonResponse.json();
+        
+        return NextResponse.json({
+          episodes: seasonData.episodes || []
+        });
+      } else if (includeEpisodes) {
+        // Fetch TV show details with seasons
+        const tvUrl = `${TMDB_BASE_URL}/tv/${id}?api_key=${TMDB_API_KEY}`;
+        const tvResponse = await fetch(tvUrl);
+        const tvData = await tvResponse.json();
+        
+        return NextResponse.json({
+          seasons: tvData.seasons?.filter((season: any) => season.season_number > 0) || [] // Filter out season 0 (specials)
+        });
+      }
+    }
     
     let results: StreamingItem[] = [];
     
